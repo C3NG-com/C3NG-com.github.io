@@ -1,65 +1,194 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>济南层构科技有限公司 - 首页</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>济南层构科技有限公司</title>
+<meta name="description" content="济南层构科技有限公司，从事人工智能应用软件开发、软硬件技术开发与技术服务。">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon-32.png" type="image/png">
+<style>
+  :root{
+    /* 品牌色 —— 取自品牌规范 Blue 色阶 */
+    --b300:#64B5F6; --b600:#1E88E5; --b700:#1976D2; --b800:#1565C0; --b900:#0D47A1;
+    --b50:#E3F2FD;
+    /* 中性色 —— 规范里的 slate 一套 */
+    --n50:#F8FAFC; --n100:#F1F5F9; --n200:#E2E8F0; --n300:#CBD5E1; --n400:#94A3B8;
+    --n500:#64748B; --n600:#475569; --n700:#334155; --n800:#1E293B; --n900:#0F172A; --n950:#020617;
+
+    --sans:"Inter","Roboto",-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+    --mono:"SF Mono",Menlo,ui-monospace,monospace;
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans); color:var(--n800); background:#fff;
+    font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px}
+  a{color:var(--b800); text-decoration:none}
+  a:hover{color:var(--b900)}
+
+  /* ---------- 顶栏 ---------- */
+  header{position:sticky; top:0; z-index:20;
+    background:rgba(255,255,255,.86); backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--n200);}
+  .bar{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:600; color:var(--n900); letter-spacing:-.01em}
+  .brand svg{width:24px; height:24px; display:block}
+  .brand span{font-size:16px}
+  nav{display:flex; gap:28px}
+  nav a{color:var(--n600); font-size:14px; font-weight:500}
+  nav a:hover{color:var(--n900)}
+  @media (max-width:720px){ nav{display:none} }
+
+  /* ---------- 首屏 ---------- */
+  .hero{padding:104px 0 92px; border-bottom:1px solid var(--n200)}
+  .hero-inner{display:grid; grid-template-columns:1fr 280px; gap:72px; align-items:center}
+  @media (max-width:880px){ .hero-inner{grid-template-columns:1fr; gap:48px} .hero{padding:72px 0 64px} }
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--b800); margin-bottom:22px;}
+  h1{font-size:34px; line-height:1.4; letter-spacing:-.018em; font-weight:650; color:var(--n900)}
+  h1 small{display:block; font-size:15px; font-weight:500; letter-spacing:.01em; color:var(--n400); margin-top:16px}
+  @media (max-width:880px){ h1{font-size:27px} }
+  .lede{margin-top:28px; font-size:17px; line-height:1.85; color:var(--n600); max-width:52ch}
+  .mark{display:flex; justify-content:center}
+  .mark svg{width:100%; max-width:260px; height:auto}
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:80px 0; border-bottom:1px solid var(--n200)}
+  section:last-of-type{border-bottom:none}
+  .sec-head{margin-bottom:44px; max-width:62ch}
+  .sec-head h2{font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--n400); margin-bottom:20px;}
+  .sec-head p{font-size:19px; line-height:1.7; color:var(--n800); letter-spacing:-.01em}
+
+  /* ---------- 业务范围 ---------- */
+  .scope{border-top:1px solid var(--n200)}
+  .scope-item{display:grid; grid-template-columns:220px 1fr; gap:40px;
+    padding:26px 0; border-bottom:1px solid var(--n200);}
+  .scope-item:last-child{border-bottom:none}
+  @media (max-width:720px){ .scope-item{grid-template-columns:1fr; gap:8px; padding:22px 0} }
+  .scope-item dt{font-weight:600; color:var(--n900); letter-spacing:-.01em}
+  .scope-item dt em{display:block; font-style:normal; font-family:var(--mono); font-size:11.5px;
+    color:var(--n400); font-weight:400; letter-spacing:.02em; margin-top:5px}
+  .scope-item dd{color:var(--n600); font-size:15.5px}
+
+  /* ---------- 联系 ---------- */
+  .contact-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--n200); border:1px solid var(--n200); border-radius:8px; overflow:hidden}
+  @media (max-width:720px){ .contact-grid{grid-template-columns:1fr} }
+  .contact-grid > *{background:#fff; padding:24px 26px; display:block; color:inherit}
+  .contact-grid a:hover{background:var(--n50)}
+  .contact-grid .k{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--n400); display:block; margin-bottom:8px}
+  .contact-grid .v{font-weight:600; color:var(--n900); letter-spacing:-.01em; word-break:break-all}
+  .contact-grid .v small{display:block; font-weight:400; font-size:13px; color:var(--n500);
+    margin-top:4px; letter-spacing:0}
+
+  /* ---------- 页脚 ---------- */
+  footer{padding:40px 0 56px; color:var(--n400); font-size:13px}
+  .foot{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap}
+</style>
 </head>
 <body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <polygon points="2,7.5 12,2 22,7.5 18.3636,9.5 12,6 5.63636,9.5" fill="#64B5F6"/>
+        <polygon points="2,11.5 5.63636,9.5 12,13 14.7273,11.5 18.3636,13.5 12,17" fill="#1E88E5"/>
+        <polygon points="5.40909,13.625 12,17.25 18.5909,13.625 22.2273,15.625 12,21.25 1.77273,15.625" fill="#1565C0"/>
+      </svg>
+      <span>层构科技</span>
+    </a>
     <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">层构科技</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="about.html">关于</a></li>
-                <li><a href="services.html">服务</a></li>
-                <li><a href="contact.html">联系</a></li>
-            </ul>
-        </div>
+      <a href="#scope">业务范围</a>
+      <a href="#contact">联系方式</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <div class="container">
-            <div class="hero">
-                <div class="logo">
-                    <img src="assets/images/c3ng.png" alt="济南层构 Logo">
-                </div>
-                
-                <h1>济南层构科技</h1>
-                <p class="subtitle">Layered Intelligence Technology<span class="cursor"></span></p>
-                <p class="description">
-                    专注于人工智能技术研发与应用<br>
-                    为企业提供智能化解决方案<br>
-                    用技术驱动业务创新
-                </p>
-                <a href="services.html" class="btn">查看我们的服务</a>
-            </div>
+<main id="top">
 
-            <div class="section">
-                <h2 class="section-title">核心业务</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <h3>AI 解决方案</h3>
-                        <p>定制化人工智能系统开发，包括机器学习、深度学习、计算机视觉等技术应用</p>
-                    </div>
-                    <div class="card">
-                        <h3>智能数据分析</h3>
-                        <p>大数据处理与智能分析平台，帮助企业从数据中发现价值，优化决策</p>
-                    </div>
-                    <div class="card">
-                        <h3>自动化系统</h3>
-                        <p>业务流程自动化设计与实施，提升运营效率，降低人力成本</p>
-                    </div>
-                </div>
-            </div>
+  <!-- 首屏 -->
+  <div class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <p class="eyebrow">Jinan Cenggou Technology</p>
+        <h1>
+          济南层构科技有限公司
+          <small>AI 硬件 · 嵌入式软件开发 · 软硬件技术开发与技术服务</small>
+        </h1>
+        <p class="lede">
+          围绕 AI 硬件做软件开发：嵌入式系统、设备端软件，
+          以及软硬件的整体技术开发与技术服务。
+        </p>
+      </div>
+      <div class="mark">
+        <svg viewBox="0 0 24 24" aria-label="层构科技标志">
+          <polygon points="2,7.5 12,2 22,7.5 18.3636,9.5 12,6 5.63636,9.5" fill="#64B5F6"/>
+          <polygon points="2,11.5 5.63636,9.5 12,13 14.7273,11.5 18.3636,13.5 12,17" fill="#1E88E5"/>
+          <polygon points="5.40909,13.625 12,17.25 18.5909,13.625 22.2273,15.625 12,21.25 1.77273,15.625" fill="#1565C0"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 业务范围 -->
+  <section id="scope">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>业务范围</h2>
+        <p>围绕 AI 硬件与嵌入式方向，公司主要做三件事。</p>
+      </div>
+      <dl class="scope">
+        <div class="scope-item">
+          <dt>AI 硬件软件<em>ai hardware software</em></dt>
+          <dd>面向 AI 硬件产品的软件与系统开发，包括设备端软件、配套应用与相关工具。</dd>
         </div>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            © 2026 济南层构科技有限公司 | public@c3ng.com
+        <div class="scope-item">
+          <dt>嵌入式开发<em>embedded development</em></dt>
+          <dd>嵌入式软件与固件的开发，以及设备与上位机之间的通信与集成。</dd>
         </div>
-    </footer>
+        <div class="scope-item">
+          <dt>技术服务<em>technical services</em></dt>
+          <dd>技术开发、技术咨询、技术转让与技术服务，支持软硬件产品的设计与实施。</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>联系方式</h2>
+        <p>业务咨询或合作，欢迎通过下列方式联系我们。</p>
+      </div>
+      <div class="contact-grid">
+        <a href="mailto:public@c3ng.com">
+          <span class="k">Email</span>
+          <span class="v">public@c3ng.com<small>工作日内回复</small></span>
+        </a>
+        <div>
+          <span class="k">Website</span>
+          <span class="v">c3ng.com<small>官方网站</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>济南层构科技有限公司</span>
+    <span>Jinan Cenggou Technology Co., Ltd.</span>
+  </div>
+</footer>
+
 </body>
 </html>
