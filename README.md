@@ -8,16 +8,42 @@
 c3ng.github.io/
 ├── index.html              # 单页官网（全部内容）
 ├── assets/
-│   ├── favicon.ico         # 多尺寸图标
-│   ├── favicon-32.png
-│   └── favicon-16.png
+│   ├── favicon-black.ico       # 当前使用的图标（透明底 + 纯黑标志）
+│   ├── favicon-black-32.png
+│   ├── favicon-black-16.png
+│   ├── favicon-black-48.png
+│   └── favicon.ico             # 旧版（浅蓝圆角块 + 彩色），保留未引用
+├── tools/
+│   └── make_favicon.py     # 生成上面 favicon 的脚本
 ├── docs/
 │   └── ARCHITECTURE.md     # 项目架构文档
 ├── CNAME                   # c3ng.com
 └── .gitignore
 ```
 
-单页结构：首屏（公司名 + 业务定位）→ 业务范围 → 联系方式。
+单页结构：首屏（品牌名 + 业务定位）→ 业务范围 → 技术方向 → 联系方式。
+
+## 图标
+
+标签栏图标是**透明底 + 纯黑标志**，由脚本生成，**不要手搓**：
+
+```bash
+python3 tools/make_favicon.py            # 用默认比例
+python3 tools/make_favicon.py 0.85       # 指定墨迹宽占比
+python3 tools/make_favicon.py 0.96 --check   # 只测量不写盘，看会不会触边
+```
+
+几何和 δ 全部读自品牌规范的 `make_assets.py`，改这个脚本时别在本地另定数值。
+
+两个已经踩过的坑（改之前先看脚本开头的注释）：
+
+- 比例参数是「墨迹**宽**占图标宽」，标志宽高比 1.07:1，所以高度方向天然更空，
+  别指望一个值把两边都填满
+- 比例有上限，超过会触边被切。实测 0.96 时 16px 贴边，**0.90 是安全上限**；
+  脚本会拒绝写入触边的比例，改了值记得跑一次
+
+已知取舍：δ=0.4 的缝在 favicon 尺寸下永远是亚像素，16px 的三层结构必然粘连，
+只剩 C 的外形。这是规范 δ 值决定的，不是 bug。
 
 ## 品牌名与标志
 
